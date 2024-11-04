@@ -6,4 +6,5 @@ public interface NotebookView {
     void showNotes(List<Note> notes);
     void showNote(Note note);
     void showError(String message);
+    String getInput();
 }

@@ -44,6 +44,7 @@ public class NotebookViewImpl implements NotebookView{
         System.out.println("Ошибка: " + message);
     }
 
+    @Override
     public String getInput() {
         return scanner.nextLine();
     }
