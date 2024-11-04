@@ -1,4 +1,4 @@
-public class NoteImpl {
+public class NoteImpl implements Note{
     private String text;
     private String date;
 
