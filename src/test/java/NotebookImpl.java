@@ -1,4 +1,6 @@
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +30,15 @@ public class NotebookImpl implements Notebook {
     @Override
     public List<Note> getNotesByWeek(String startDate, String endDate) {
         List<Note> weekNotes = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Формат даты
+
+        LocalDate startLocalDate = LocalDate.parse(startDate, formatter);
+        LocalDate endLocalDate = LocalDate.parse(endDate, formatter);
+
         for (Note note : notes) {
-            if (note.getDate().compareTo(startDate) >= 0 && note.getDate().compareTo(endDate) <= 0) {
+            LocalDate noteDate = LocalDate.parse(note.getDate(), formatter);
+
+            if (noteDate.isAfter(startLocalDate.minusDays(1)) && noteDate.isBefore(endLocalDate.plusDays(1))) {
                 weekNotes.add(note);
             }
         }
